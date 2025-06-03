@@ -1,0 +1,22 @@
+{
+    "#restart_button": {
+      "colours": {
+        "normal_bg": "#CCAA00",
+        "hovered_bg": "#CCAA00",
+        "active_bg": "#CCAA00",
+        "normal_text": "#000000",
+        "hovered_text": "#000000",
+        "active_text": "#000000"
+      }
+    },
+    "#end_button": {
+      "colours": {
+        "normal_bg": "#CCAA00",
+        "hovered_bg": "#CCAA00",
+        "active_bg": "#CCAA00",
+        "normal_text": "#000000",
+        "hovered_text": "#000000",
+        "active_text": "#000000"
+      }
+    }
+}
