@@ -8,8 +8,8 @@ import sys
 
 pygame.init()
 
-WIDTH = 1000
-HEIGHT = 800
+WIDTH = 1500
+HEIGHT = 900
 
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption('KILL ZOMBIE | Mate o máximo de zumbis que conseguir')
@@ -25,13 +25,15 @@ font = pygame.font.SysFont(None, 50)
 x_position = 1
 y_position = 90
 
-ZOMBIE_WIDTH = 150
+ZOMBIE_WIDTH = 150 
 ZOMBIE_HEIGHT = 150
 
 BUTTON_WIDTH = 200
 BUTTON_HEIGHT = 50
 
-background = pygame.image.load("background.png")
+background = pygame.image.load("background"
+".png")
+background = pygame.transform.scale(background, (WIDTH, HEIGHT))
 
 zombie = pygame.image.load("zombie.png")
 zombie = pygame.transform.scale(zombie, (ZOMBIE_WIDTH, ZOMBIE_HEIGHT))
@@ -40,7 +42,7 @@ gun = pygame.image.load("gun.png")
 gun = pygame.transform.scale(gun, (300, 300))
 
 shot_gun = pygame.image.load("shot_gun.png")
-shot_gun = pygame.transform.scale(shot_gun, (300, 300))
+shot_gun = pygame.transform.scale(shot_gun, (410, 410))
 showing_shot_gun = False
 shot_gun_timer = 0
 SHOT_GUN_DISPLAY_TIME = 100  # milissegundos
@@ -60,7 +62,7 @@ def score_counter():
     score += 1
 
 restart_button = pygame_gui.elements.UIButton(
-    relative_rect= pygame.Rect((WIDTH/2 - BUTTON_WIDTH/2, HEIGHT/2-BUTTON_HEIGHT/2) , (BUTTON_WIDTH,BUTTON_HEIGHT)),
+    relative_rect= pygame.Rect((WIDTH/2 - BUTTON_WIDTH/2, HEIGHT/1.7-BUTTON_HEIGHT/2) , (BUTTON_WIDTH,BUTTON_HEIGHT)),
     text= 'Jogar novamente',
     manager= manager,
     object_id= "#restart_button"
@@ -111,8 +113,8 @@ while running:
         draw_rect()
 
         seconds = (pygame.time.get_ticks() - start_ticks) // 1000
-        temporizador = font.render(f'{seconds}', True, Colors.YELLOW)
-        screen.blit(temporizador, (0, 0))
+        temporizador = font.render(f'Tempo: {seconds}  - Mate o máximo de zumbis que conseguir', True, Colors.YELLOW)
+        screen.blit(temporizador, (0, 3))
 
         current_score = font.render(f'Pontuação: {score}', True, Colors.YELLOW)
         screen.blit(current_score, (0, 50))
@@ -121,7 +123,11 @@ while running:
             game_over = True
     else:
         text_score = font.render(f'Pontuação final: {score}', True, Colors.YELLOW)
-        screen.blit(text_score, (350, 300))
+        text_width = text_score.get_width()
+        text_height = text_score.get_height()
+        text_x = (WIDTH - text_width) // 2
+        text_y = (HEIGHT - text_height) // 2
+        screen.blit(text_score, (text_x, text_y))
         restart_button.show()
         end_button.show()
 
