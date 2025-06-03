@@ -20,19 +20,18 @@ score = 0
 
 start_ticks = pygame.time.get_ticks()
 
-font = pygame.font.SysFont(None, 50)
+font = pygame.font.SysFont('Chiller', 50)
 
 x_position = 1
 y_position = 90
 
-ZOMBIE_WIDTH = 150 
-ZOMBIE_HEIGHT = 150
+ZOMBIE_WIDTH = 190 
+ZOMBIE_HEIGHT = 190
 
 BUTTON_WIDTH = 200
 BUTTON_HEIGHT = 50
 
-background = pygame.image.load("background"
-".png")
+background = pygame.image.load("background3.png")
 background = pygame.transform.scale(background, (WIDTH, HEIGHT))
 
 zombie = pygame.image.load("zombie.png")
@@ -45,7 +44,9 @@ shot_gun = pygame.image.load("shot_gun.png")
 shot_gun = pygame.transform.scale(shot_gun, (410, 410))
 showing_shot_gun = False
 shot_gun_timer = 0
-SHOT_GUN_DISPLAY_TIME = 100  # milissegundos
+SHOT_GUN_DISPLAY_TIME = 100 
+
+shot = pygame.mixer.Sound("pistol_shot.mp3")
 
 
 def draw_rect():
@@ -93,6 +94,7 @@ while running:
                     score_counter()
                     showing_shot_gun = True
                     shot_gun_timer = pygame.time.get_ticks()
+                    shot.play()
         else:
             if event.type == pygame_gui.UI_BUTTON_PRESSED:
                 if event.ui_element == restart_button:
@@ -114,12 +116,12 @@ while running:
 
         seconds = (pygame.time.get_ticks() - start_ticks) // 1000
         temporizador = font.render(f'Tempo: {seconds}  - Mate o máximo de zumbis que conseguir', True, Colors.YELLOW)
-        screen.blit(temporizador, (0, 3))
+        screen.blit(temporizador, (10, 3))
 
         current_score = font.render(f'Pontuação: {score}', True, Colors.YELLOW)
-        screen.blit(current_score, (0, 50))
+        screen.blit(current_score, (10, 50))
 
-        if seconds >= 31:
+        if seconds >= 30:
             game_over = True
     else:
         text_score = font.render(f'Pontuação final: {score}', True, Colors.YELLOW)
