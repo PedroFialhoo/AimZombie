@@ -12,7 +12,7 @@ WIDTH = 1500
 HEIGHT = 900
 
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption('KILL ZOMBIE | Mate o máximo de zumbis que conseguir')
+pygame.display.set_caption('AimZombie | MATE TODOS OS ZUMBIS!')
 
 manager = pygame_gui.UIManager((WIDTH, HEIGHT), "themes.json")
 
